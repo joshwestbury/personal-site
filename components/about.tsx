@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export default function About() {
   return (
     <section id="about" className="py-20 md:py-32 space-y-12 w-full">
@@ -17,8 +19,14 @@ export default function About() {
             When I'm not coding, you can find me reading, exploring new ideas, or contributing to open-source projects.
           </p>
         </div>
-        <div className="bg-secondary rounded-lg h-64 md:h-80 flex items-center justify-center text-muted-foreground border border-border">
-          [Your Photo Here]
+        <div className="relative rounded-lg h-80 md:h-96 overflow-hidden border border-border">
+          <Image
+            src="/headshot.JPG"
+            alt="Professional headshot"
+            fill
+            className="object-cover object-top"
+            priority
+          />
         </div>
       </div>
     </section>

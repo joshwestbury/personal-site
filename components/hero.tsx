@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react"
 export default function Hero() {
   return (
     <section className="py-20 md:py-40 space-y-8 relative w-full" style={{
-      background: 'radial-gradient(ellipse 800px 800px at 90% 20%, oklch(0.55 0.22 200 / 0.35), transparent 70%), radial-gradient(ellipse 500px 500px at 10% 80%, oklch(0.55 0.22 200 / 0.25), transparent)'
+      background: 'radial-gradient(ellipse 800px 800px at 90% 20%, oklch(0.55 0.22 200 / 0.35), transparent 70%)'
     }}>
       <div className="px-4 md:px-8">
       <div className="space-y-6 relative z-10">
