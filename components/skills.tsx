@@ -22,7 +22,9 @@ export default function Skills() {
   return (
     <section id="skills" className="py-20 md:py-32 space-y-12 w-full">
       <div className="space-y-4">
-        <h2 className="text-4xl md:text-5xl font-bold">Skills & Technologies</h2>
+        <h2 className="text-4xl md:text-5xl font-bold">
+          Skills & <span className="gradient-text">Technologies</span>
+        </h2>
         <p className="text-lg text-muted-foreground max-w-2xl">
           A comprehensive overview of the technologies and tools I work with to build modern applications.
         </p>

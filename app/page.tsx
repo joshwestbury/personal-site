@@ -6,6 +6,7 @@ import Hero from "@/components/hero"
 import About from "@/components/about"
 import Projects from "@/components/projects"
 import Skills from "@/components/skills"
+import Learning from "@/components/learning"
 import Blog from "@/components/blog"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
@@ -41,12 +42,15 @@ export default function Home() {
     <div className="min-h-screen w-full max-w-full bg-background text-foreground overflow-x-hidden">
       <Navigation isDark={isDark} toggleTheme={toggleTheme} />
       <Hero />
-      <main className="w-full max-w-full px-4 md:px-8">
-        <About />
-        <Projects />
-        <Skills />
-        <Blog />
-        <Contact />
+      <main className="w-full max-w-full">
+        <div className="container max-w-7xl mx-auto px-4 md:px-8">
+          <About />
+          <Projects />
+          <Skills />
+          <Learning />
+          <Blog />
+          <Contact />
+        </div>
       </main>
       <Footer />
     </div>
