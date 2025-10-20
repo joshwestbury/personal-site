@@ -39,11 +39,11 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen w-full max-w-full bg-background text-foreground overflow-x-hidden">
+    <div className="bg-background text-foreground min-h-screen w-full max-w-full overflow-x-hidden">
       <Navigation isDark={isDark} toggleTheme={toggleTheme} />
       <Hero />
       <main className="w-full max-w-full">
-        <div className="container max-w-7xl mx-auto px-4 md:px-8">
+        <div className="container mx-auto max-w-7xl px-4 md:px-8">
           <About />
           <Projects />
           <Skills />

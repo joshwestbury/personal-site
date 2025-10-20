@@ -133,24 +133,15 @@
   }
 
   html, body {
-    @apply w-full overflow-x-hidden;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    @apply m-0 w-full max-w-full overflow-x-hidden p-0;
   }
 
   #__next, [data-reactroot] {
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow-x: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    @apply m-0 w-full max-w-full overflow-x-hidden p-0;
   }
 
   body > div {
-    width: 100% !important;
-    max-width: 100% !important;
+    @apply w-full max-w-full;
   }
 
   h1,
@@ -183,6 +174,24 @@
   }
 }
 
+@layer components {
+  .section-container {
+    @apply container mx-auto max-w-7xl px-4 md:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-8 py-4 text-lg font-semibold text-accent-foreground transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-accent/30;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl border-2 border-border bg-card px-8 py-4 text-lg font-semibold transition-all duration-300 hover:border-accent hover:bg-secondary;
+  }
+
+  .social-icon {
+    @apply rounded-lg bg-secondary p-3 transition-all duration-300 hover:scale-110 hover:bg-accent hover:text-accent-foreground;
+  }
+}
+
 @layer utilities {
   .gradient-text {
     @apply bg-gradient-to-r from-accent via-accent-secondary to-accent-tertiary bg-clip-text text-transparent;
@@ -200,7 +209,15 @@
   }
 
   .hover-lift {
-    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  .glass {
+    @apply border border-border/50 bg-card/50 backdrop-blur-xl;
+  }
+
+  .text-balance {
+    text-wrap: balance;
   }
 
   .animate-fade-in {
@@ -217,14 +234,6 @@
 
   .animate-slide-in-right {
     animation: slideInRight 0.6s ease-out;
-  }
-
-  .glass {
-    @apply bg-card/50 backdrop-blur-xl border border-border/50;
-  }
-
-  .text-balance {
-    text-wrap: balance;
   }
 }
 
