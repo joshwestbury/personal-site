@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import baffle from 'baffle'
 
 interface ScrambleTextProps {
@@ -12,7 +12,7 @@ interface ScrambleTextProps {
 export default function ScrambleText({ texts, defaultText, className = "" }: ScrambleTextProps) {
   const textRef = useRef<HTMLSpanElement>(null)
   const baffleInstance = useRef<any>(null)
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const currentIndexRef = useRef(0)
   const isAnimating = useRef(false)
 
   // Initialize baffle on mount
@@ -47,23 +47,23 @@ export default function ScrambleText({ texts, defaultText, className = "" }: Scr
     }
   }, [defaultText])
 
-  const handleMouseOver = () => {
-    if (!baffleInstance.current || isAnimating.current) return
+  const handleMouseEnter = () => {
+    if (!baffleInstance.current || texts.length === 0) return
 
-    // Prevent overlapping animations
+    // Stop any ongoing animation
+    baffleInstance.current.stop()
     isAnimating.current = true
 
     // Get the current text from the sequence
-    const selectedText = texts[currentIndex]
+    const selectedText = texts[currentIndexRef.current]
 
-    // Increment index for next hover (wrap around to 0 if we reach the end)
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length)
+    // Increment index for next time (wrap around using modulo)
+    currentIndexRef.current = (currentIndexRef.current + 1) % texts.length
 
     baffleInstance.current.start()
     baffleInstance.current.text(() => selectedText)
     setTimeout(() => {
       baffleInstance.current.reveal(500)
-      // Mark animation as complete after reveal finishes
       setTimeout(() => {
         isAnimating.current = false
       }, 500)
@@ -71,17 +71,16 @@ export default function ScrambleText({ texts, defaultText, className = "" }: Scr
   }
 
   const handleMouseLeave = () => {
-    if (!baffleInstance.current || !defaultText || isAnimating.current) return
+    if (!baffleInstance.current || !defaultText) return
 
-    // Prevent overlapping animations
+    // Stop any ongoing animation and return to default
+    baffleInstance.current.stop()
     isAnimating.current = true
 
-    // Return to default text
     baffleInstance.current.start()
     baffleInstance.current.text(() => defaultText)
     setTimeout(() => {
       baffleInstance.current.reveal(500)
-      // Mark animation as complete after reveal finishes
       setTimeout(() => {
         isAnimating.current = false
       }, 500)
@@ -92,7 +91,7 @@ export default function ScrambleText({ texts, defaultText, className = "" }: Scr
     <span
       ref={textRef}
       className={className}
-      onMouseEnter={handleMouseOver}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={{ cursor: 'pointer' }}
     >
